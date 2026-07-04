@@ -194,6 +194,14 @@ h1, h2 {
   background-clip: text;
   color: transparent;
 }
+.tiktok-glitch {
+  display: inline-block;
+  color: var(--text);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  text-shadow: -0.035em 0 0 var(--accent1), 0.035em 0.025em 0 var(--accent2);
+}
 
 /* 00 — Cover */
 #s0 {
