@@ -1,6 +1,6 @@
 (function () {
   var sectionLabels = ['00 Cover','01 Intro','02 Concept','03 Objectifs','04 Chiffres','05 Marque','06 Étude de cas','07 Résultats','08 Formats','09 Contact','10 Merci'];
-  var navLabels = ['Accueil','Introduction','Concept','Objectifs','Chiffres clés','Application','Campagne créative','Collaborations','Vidéos & UGC','Contact','Merci'];
+  var navLabels = ['Accueil','Introduction','Concept','Objectifs','Chiffres clés','Application','Campagne créative','Collaborations','Vidéos & UGC','Contact'];
 
   var faqData = [
     { q: "Pourquoi organiser un Pop-Up Store ?", a: "Montrer que TikTok est bien plus qu'une application de divertissement : un acteur majeur de la culture populaire qui fait vivre cette culture dans le monde réel." },
