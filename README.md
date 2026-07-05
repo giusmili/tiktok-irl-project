@@ -22,13 +22,13 @@ Projet réalisé dans le cadre de mes études (ESG LUXE). Page unique en défile
 ├──📁download/
 │   └──📄(brief créatifs et campagnes au format PDF)
 ├──📁favicon/
+│   ├──📄manifest.webmanifest
 │   └──📄(icônes favicon et PWA)
 ├──📁js/
 │   └──📄main.js
 ├──📁media/
 │   └──📄(vidéos UGC au format mp4)
 ├──📄index.html
-├──📄manifest.webmanifest
 └──📄README.md
 ```
 
