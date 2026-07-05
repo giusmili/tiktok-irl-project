@@ -104,6 +104,19 @@
         if (idx !== -1) {
           setActive(idx);
           entry.target.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
+          entry.target.querySelectorAll('video.lazy-video[data-src]').forEach(function (v) {
+            v.src = v.dataset.src;
+            v.removeAttribute('data-src');
+            v.load();
+          });
+          entry.target.querySelectorAll('.video-thumb').forEach(function (thumb) {
+            var v = thumb.querySelector('video');
+            if (!v || v.dataset.thumbBound) return;
+            v.dataset.thumbBound = '1';
+            v.addEventListener('play', function () { thumb.classList.add('is-playing'); });
+            v.addEventListener('pause', function () { thumb.classList.remove('is-playing'); });
+            v.addEventListener('ended', function () { thumb.classList.remove('is-playing'); });
+          });
         }
       }
     });
@@ -143,4 +156,7 @@
     item.appendChild(aWrap);
     faqList.appendChild(item);
   });
+
+  var footerYear = document.getElementById('footerYear');
+  if (footerYear) footerYear.textContent = new Date().getFullYear();
 })();
