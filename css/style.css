@@ -436,11 +436,14 @@ h1, h2 {
 #s9 .sign { font-size: 16px; color: var(--muted-dim); margin-top: 16px; }
 
 /* 10 — Footer */
-.site-footer { border-top: 1px solid var(--border); background: var(--bg); }
+.site-footer { border-top: 1px solid var(--border); background: var(--bg); scroll-snap-align: end; }
 .site-footer p { margin: 0; padding: 22px var(--pad-x); text-align: center; font-size: 13px; color: var(--muted-dim); }
 
 @media (max-width: 860px) {
-  #s1, #s6 { grid-template-columns: 1fr; gap: 40px; }
+  #s1, #s6 {
+    height: auto; min-height: 100vh; grid-template-columns: 1fr; gap: 40px;
+    padding-top: var(--section-pad-y); padding-bottom: var(--section-pad-y);
+  }
   #s6 .photo { max-height: 40vh; }
   .grid-3 { grid-template-columns: 1fr; }
   .grid-4 { grid-template-columns: repeat(2,1fr); }

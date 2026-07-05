@@ -1,6 +1,6 @@
 (function () {
-  var sectionLabels = ['00 Cover','01 Intro','02 Concept','03 Objectifs','04 Chiffres','05 Partenariats',"06 L'Oreal",'07 FAQ','08 Contact','09 Merci'];
-  var navLabels = ['Accueil','Introduction','Concept','Objectifs','Chiffres clés','Partenariats',"L'Oréal",'FAQ','Contact','Merci'];
+  var sectionLabels = ['00 Cover','01 Intro','02 Concept','03 Objectifs','04 Chiffres','05 Marque','06 Étude de cas','07 Résultats','08 Formats','09 Contact','10 Merci'];
+  var navLabels = ['Accueil','Introduction','Concept','Objectifs','Chiffres clés','Application','Campagne créative','Collaborations','Vidéos & UGC','Contact','Merci'];
 
   var faqData = [
     { q: "Pourquoi organiser un Pop-Up Store ?", a: "Montrer que TikTok est bien plus qu'une application de divertissement : un acteur majeur de la culture populaire qui fait vivre cette culture dans le monde réel." },
@@ -19,7 +19,7 @@
 
   sectionLabels.forEach(function (label, i) {
     var a = document.createElement('a');
-    a.href = '#s' + i;
+    a.href = '#' + (sections[i] ? sections[i].id : '');
     a.title = label;
     if (i === 0) a.className = 'active';
     a.addEventListener('click', function (e) {
@@ -36,7 +36,7 @@
 
   navLabels.forEach(function (label, i) {
     var a = document.createElement('a');
-    a.href = '#s' + i;
+    a.href = '#' + (sections[i] ? sections[i].id : '');
     a.textContent = label;
     if (i === 0) a.className = 'active';
     a.addEventListener('click', function (e) {
@@ -97,6 +97,26 @@
     scrollRaf = requestAnimationFrame(step);
   }
 
+  document.querySelectorAll('.video-thumb').forEach(function (thumb) {
+    var v = thumb.querySelector('video');
+    if (!v) return;
+    v.addEventListener('play', function () { thumb.classList.add('is-playing'); });
+    v.addEventListener('pause', function () { thumb.classList.remove('is-playing'); });
+    v.addEventListener('ended', function () { thumb.classList.remove('is-playing'); });
+  });
+
+  var videoIo = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var v = entry.target;
+      v.src = v.dataset.src;
+      v.removeAttribute('data-src');
+      v.load();
+      videoIo.unobserve(v);
+    });
+  }, { root: scroller, threshold: 0.01 });
+  document.querySelectorAll('video.lazy-video[data-src]').forEach(function (v) { videoIo.observe(v); });
+
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
@@ -104,19 +124,6 @@
         if (idx !== -1) {
           setActive(idx);
           entry.target.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
-          entry.target.querySelectorAll('video.lazy-video[data-src]').forEach(function (v) {
-            v.src = v.dataset.src;
-            v.removeAttribute('data-src');
-            v.load();
-          });
-          entry.target.querySelectorAll('.video-thumb').forEach(function (thumb) {
-            var v = thumb.querySelector('video');
-            if (!v || v.dataset.thumbBound) return;
-            v.dataset.thumbBound = '1';
-            v.addEventListener('play', function () { thumb.classList.add('is-playing'); });
-            v.addEventListener('pause', function () { thumb.classList.remove('is-playing'); });
-            v.addEventListener('ended', function () { thumb.classList.remove('is-playing'); });
-          });
         }
       }
     });
@@ -135,27 +142,29 @@
   });
 
   var faqList = document.getElementById('faqList');
-  faqData.forEach(function (f) {
-    var item = document.createElement('div');
-    item.className = 'faq-item';
-    var q = document.createElement('div');
-    q.className = 'faq-q';
-    q.innerHTML = '<div class="text"></div><div class="mark">+</div>';
-    q.querySelector('.text').textContent = f.q;
-    var aWrap = document.createElement('div');
-    aWrap.className = 'faq-a-wrap';
-    var p = document.createElement('p');
-    p.textContent = f.a;
-    aWrap.appendChild(p);
-    q.addEventListener('click', function () {
-      var wasOpen = item.classList.contains('open');
-      faqList.querySelectorAll('.faq-item.open').forEach(function (el) { el.classList.remove('open'); });
-      if (!wasOpen) item.classList.add('open');
+  if (faqList) {
+    faqData.forEach(function (f) {
+      var item = document.createElement('div');
+      item.className = 'faq-item';
+      var q = document.createElement('div');
+      q.className = 'faq-q';
+      q.innerHTML = '<div class="text"></div><div class="mark">+</div>';
+      q.querySelector('.text').textContent = f.q;
+      var aWrap = document.createElement('div');
+      aWrap.className = 'faq-a-wrap';
+      var p = document.createElement('p');
+      p.textContent = f.a;
+      aWrap.appendChild(p);
+      q.addEventListener('click', function () {
+        var wasOpen = item.classList.contains('open');
+        faqList.querySelectorAll('.faq-item.open').forEach(function (el) { el.classList.remove('open'); });
+        if (!wasOpen) item.classList.add('open');
+      });
+      item.appendChild(q);
+      item.appendChild(aWrap);
+      faqList.appendChild(item);
     });
-    item.appendChild(q);
-    item.appendChild(aWrap);
-    faqList.appendChild(item);
-  });
+  }
 
   var footerYear = document.getElementById('footerYear');
   if (footerYear) footerYear.textContent = new Date().getFullYear();
