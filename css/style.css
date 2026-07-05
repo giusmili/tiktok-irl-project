@@ -254,6 +254,7 @@ h1, h2 {
 .stat-card .big { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(50px,6vw,84px); line-height: 1; }
 .stat-card .caption { font-size: 16px; color: var(--muted); margin-top: 14px; font-weight: 600; }
 .stat-card .rule { height: 1px; background: var(--border); margin: 28px 0; }
+.stat-card .strategy-illustration { width: 100%; height: auto; display: block; }
 .stat-card .footnote { font-size: 15px; color: var(--muted-dim); line-height: 1.6; }
 
 /* 02 — Concept */
