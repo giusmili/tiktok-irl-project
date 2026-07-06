@@ -1,13 +1,13 @@
-# TikTok IRL — Dossier de presse
+# Portfolio Creative Strategist
 
-Dossier de presse pour TikTok IRL, premier Pop-Up Store immersif de TikTok en France : contexte, objectifs, chiffres clés, partenariats (Spotify, Huda Beauty), étude de cas L'Oréal, formats vidéo UGC, FAQ et contact presse.
+Portfolio de Giulia Militello, Creative Strategist : bio, objectifs, chiffres clés, applications IZZ et Dygest, brief créatif et campagne L'Oréal, vidéos et collaborations UGC, contact.
 
 Projet réalisé dans le cadre de mes études (ESG LUXE). Page unique en défilement (scroll snap), avec menu de navigation, indicateur de progression et animations d'apparition au scroll.
 
 ## Structure
 
 ```
-40-tiktok-irl-project/
+project/
 ├──📁assets/
 │   ├──📁thumbs/
 │   │   ├──📄dygest-ettoi-combien-tu-gagnes.jpg
@@ -34,4 +34,4 @@ Projet réalisé dans le cadre de mes études (ESG LUXE). Page unique en défile
 
 ## Consultation
 
-Le site s'ouvre directement dans un navigateur en ouvrant `index.html`, ou en ligne : https://giusmili.github.io/tiktok-irl-project/
+Le site en ligne : [Creative Strategist](https://giusmili.github.io/tiktok-irl-project/)
